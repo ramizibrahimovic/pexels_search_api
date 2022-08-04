@@ -1,0 +1,55 @@
+<!-- API key Pexels: 563492ad6f917000010000014897239b24104a07b8c2a7b174cb4841 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pexels API</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <form id="search-form">
+        <input type="text" id="search-field" placeholder="Search for free photos">
+    </form>
+    <div id="all-photo-container">
+
+    </div>
+    <a  href="https://www.pexels.com">
+        <img src="https://images.pexels.com/lib/api/pexels.png" height="30"/>
+    </a>
+
+    <script>
+        $(document).ready(function() {
+            $("#search-form").on("submit", function(event) {
+                event.preventDefault();
+                $("#all-photo-container").html("");
+                $.ajax({
+                    url: "https://api.pexels.com/v1/search?query=" + $('#search-field').val(),
+                    headers: {'Authorization': "563492ad6f917000010000014897239b24104a07b8c2a7b174cb4841"},
+                    success: function(data) { 
+                        for (let item of data.photos) {
+                            let photoContainer = $(`
+                                <div class="photo-container">
+                                    <img src=${item.src.medium}>
+                                </div>`)
+                            $('#all-photo-container').append(photoContainer);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+<!-- 1. better alignment of the pictures with even odd classes
+// console.log($(".photo-container"));
+// $(".photo-container").each(function(index,elem){
+//     console.log(index);
+//     if (index % 2 === 0) {
+//         elem.addClass("even")
+//     };
+// }) 
+2. once I searched for something old default value (Search for free photos) is gone. how do i get it back?-->
