@@ -5,6 +5,22 @@
 }
 
 body {
+    font-family: sans-serif;
+}
+
+#banner {
+    /* padding-left: 18px; */
+    background-image: url("assets/banner.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 230px;
+}
+
+#banner a {
+    margin: 40px 0 0 20px;
+}
+
+#banner form {
     text-align: center;
 }
 
@@ -22,7 +38,6 @@ body {
 
 #search-field:focus {
     border: grey 1px solid;
-    background-color: transparent;
     resize: none;
     outline: none;
 }
